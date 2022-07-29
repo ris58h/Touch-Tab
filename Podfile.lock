@@ -1,0 +1,18 @@
+PODS:
+  - M5MultitouchSupport (1.1.0):
+    - M5MultitouchSupport/Internal (= 1.1.0)
+  - M5MultitouchSupport/Internal (1.1.0)
+
+DEPENDENCIES:
+  - M5MultitouchSupport
+
+SPEC REPOS:
+  trunk:
+    - M5MultitouchSupport
+
+SPEC CHECKSUMS:
+  M5MultitouchSupport: ea076d72161140e3d37fb3d474b597aa5cd15484
+
+PODFILE CHECKSUM: 4405e872f615373d5cfe5c1ac6608ff74f8963a7
+
+COCOAPODS: 1.10.0
