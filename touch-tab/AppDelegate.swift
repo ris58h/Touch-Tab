@@ -71,7 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func quit() {
         if self.listener != nil {
-            Swipes.removeSwipeListener(listener: self.listener!)
+            SwipeManager.removeSwipeListener(listener: self.listener!)
         }
         NSApplication.shared.terminate(self)
     }
