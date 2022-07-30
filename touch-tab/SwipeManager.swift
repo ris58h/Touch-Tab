@@ -59,7 +59,7 @@ class SwipeManager {
         }
     }
 
-    static func horizontalSwipeVelocity(touches: [Any]) -> Float? {
+    private static func horizontalSwipeVelocity(touches: [Any]) -> Float? {
         var allRight = true
         var allLeft = true
         var sumVelX = Float(0)
