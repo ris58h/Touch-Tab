@@ -6,13 +6,13 @@ class SwipeManager {
     static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
         var accVelX = Float(0)
         var activated = false
-        
+
         func endGesture() {
             accVelX = 0
             activated = false
             listener(.select)
         }
-        
+
         return M5MultitouchManager.shared().addListener {event in
             if event == nil {
                 return
@@ -41,30 +41,12 @@ class SwipeManager {
                 return
             }
 
-            var allRight = true
-            var allLeft = true
-            var sumVelX = Float(0)
-            var sumVelY = Float(0)
-            for touch in touches {
-                let mTouch = touch as! M5MultitouchTouch
-                allRight = allRight && mTouch.velX >= 0
-                allLeft = allLeft && mTouch.velX <= 0
-                sumVelX += mTouch.velX
-                sumVelY += mTouch.velY
-            }
-            // All fingers should move in the same direction.
-            if !allRight && !allLeft {
+            let velX = SwipeManager.horizontalSwipeVelocity(touches: touches)
+            if velX == nil {
                 return
             }
 
-            let velX = sumVelX / Float(touches.capacity)
-            let velY = sumVelY / Float(touches.capacity)
-            // Only horizontal swipes.
-            if abs(velX) <= abs(velY) {
-                return
-            }
-            
-            accVelX += velX
+            accVelX += velX!
             // Not enough swiping.
             if abs(accVelX) < swipeVelXThreshold {
                 return
@@ -73,8 +55,35 @@ class SwipeManager {
             accVelX = 0
             activated = true
 
-            listener(.swipe(direction: velX < 0 ? .left : .right))
+            listener(.swipe(direction: velX! < 0 ? .left : .right))
         }
+    }
+
+    static func horizontalSwipeVelocity(touches: [Any]) -> Float? {
+        var allRight = true
+        var allLeft = true
+        var sumVelX = Float(0)
+        var sumVelY = Float(0)
+        for touch in touches {
+            let mTouch = touch as! M5MultitouchTouch
+            allRight = allRight && mTouch.velX >= 0
+            allLeft = allLeft && mTouch.velX <= 0
+            sumVelX += mTouch.velX
+            sumVelY += mTouch.velY
+        }
+        // All fingers should move in the same direction.
+        if !allRight && !allLeft {
+            return nil
+        }
+
+        let velX = sumVelX / Float(touches.capacity)
+        let velY = sumVelY / Float(touches.capacity)
+        // Only horizontal swipes are interesting.
+        if abs(velX) <= abs(velY) {
+            return nil
+        }
+
+        return velX
     }
 
     static func removeSwipeListener(listener: M5MultitouchListener) {
