@@ -42,11 +42,12 @@ class SwipeManager {
             }
 
             let velX = SwipeManager.horizontalSwipeVelocity(touches: touches)
+            // We don't care about non-horizontal swipes.
             if velX == nil {
                 return
             }
 
-            // Reset accVelX if the swipe has the opposite direction.
+            // Reset acc if the swipe has the opposite direction to have a smoother experience.
             if velX!.sign != accVelX.sign {
                 accVelX = 0
             }
