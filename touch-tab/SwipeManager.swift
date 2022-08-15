@@ -31,7 +31,9 @@ class SwipeManager {
             //TODO: it has wrong size if casted 'as! [M5MultitouchTouch]'
             let touches: [Any] = event!.touches
 
+            // We don't care about non-3-fingers swipes.
             if touches.capacity != 3 {
+                // Except when we already started a gesture, so we need to end it.
                 //TODO: sometimes all fingers are released simultaneously, so we don't get 1-finger event and just stuck in App Switcher.
                 if (touches.capacity == 1 || touches.capacity > 3) && activated {
                     endGesture()
