@@ -15,7 +15,7 @@ class SwipeManager {
 
             listener(.start(direction: direction))
         }
-        
+
         func endGesture() {
             accVelX = 0
             activated = false
@@ -57,6 +57,8 @@ class SwipeManager {
             if abs(accVelX) < accVelXThreshold {
                 return
             }
+
+            //TODO: One powerful swipe leads to multiple switches!!!
 
             startGesture()
         }
