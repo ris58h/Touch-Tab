@@ -2,16 +2,19 @@ import M5MultitouchSupport
 
 class SwipeManager {
     private static let accVelXThreshold: Float = 10
+    private static let debounceTimeBeforeActivation: Double = 0.1
 
     static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
         var accVelX: Float = 0
         var activated = false
+        var segmentStartTime: Date? = nil
 
         func startOrContinueGesture() {
             let direction: EventType.Direction = accVelX < 0 ? .left : .right
 
             accVelX = 0
             activated = true
+            segmentStartTime = nil
 
             listener(.startOrContinue(direction: direction))
         }
@@ -19,6 +22,7 @@ class SwipeManager {
         func endGesture() {
             accVelX = 0
             activated = false
+            segmentStartTime = nil
 
             listener(.end)
         }
@@ -35,8 +39,14 @@ class SwipeManager {
             if touches.capacity != 3 {
                 // Except when we already started a gesture, so we need to end it.
                 //TODO: sometimes all fingers are released simultaneously, so we don't get 1-finger event and just stuck in App Switcher.
-                if (touches.capacity == 1 || touches.capacity > 3) && activated {
-                    endGesture()
+                if (touches.capacity == 1 || touches.capacity > 3) {
+                    if activated {
+                        endGesture()
+                    } else if segmentStartTime != nil {
+                        // We have start event skipped due to debounce, so we need to call it first.
+                        startOrContinueGesture()
+                        endGesture()
+                    }
                 }
                 return
             }
@@ -58,7 +68,13 @@ class SwipeManager {
                 return
             }
 
-            //TODO: One powerful swipe leads to multiple switches!!!
+            // Debounce events before activation to prevent multiple listener calls on one powerful swipe.
+            if segmentStartTime == nil {
+                segmentStartTime = Date()
+            }
+            if -segmentStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !activated {
+                return
+            }
 
             startOrContinueGesture()
         }
