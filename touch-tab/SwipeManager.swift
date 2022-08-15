@@ -1,10 +1,10 @@
 import M5MultitouchSupport
 
 class SwipeManager {
-    private static let swipeVelXThreshold = Float(10)
+    private static let accVelXThreshold: Float = 10
 
     static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
-        var accVelX = Float(0)
+        var accVelX: Float = 0
         var activated = false
 
         func endGesture() {
@@ -48,7 +48,7 @@ class SwipeManager {
 
             accVelX += velX!
             // Not enough swiping.
-            if abs(accVelX) < swipeVelXThreshold {
+            if abs(accVelX) < accVelXThreshold {
                 return
             }
 
