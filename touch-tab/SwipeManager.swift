@@ -7,10 +7,20 @@ class SwipeManager {
         var accVelX: Float = 0
         var activated = false
 
+        func startGesture() {
+            let direction: EventType.Direction = accVelX < 0 ? .left : .right
+
+            accVelX = 0
+            activated = true
+
+            listener(.start(direction: direction))
+        }
+        
         func endGesture() {
             accVelX = 0
             activated = false
-            listener(.select)
+
+            listener(.end)
         }
 
         return M5MultitouchManager.shared().addListener {event in
@@ -21,21 +31,9 @@ class SwipeManager {
             //TODO: it has wrong size if casted 'as! [M5MultitouchTouch]'
             let touches: [Any] = event!.touches
 
-            // Less then 2 fingers is considered as the end of the gesture.
-            if touches.capacity == 1 && activated {
-                //TODO: sometimes all fingers released simultaneously, so we don't get 1-finger event and just stuck in App Switcher. Consider scheduled checking.
-                endGesture()
-                return
-            }
-
-            // Just let it go.
-            if touches.capacity < 3 {
-                return
-            }
-
-            // To prevent false activation for more fingers swipe.
-            if touches.capacity > 3 {
-                if activated {
+            if touches.capacity != 3 {
+                //TODO: sometimes all fingers are released simultaneously, so we don't get 1-finger event and just stuck in App Switcher.
+                if (touches.capacity == 1 || touches.capacity > 3) && activated {
                     endGesture()
                 }
                 return
@@ -52,10 +50,7 @@ class SwipeManager {
                 return
             }
 
-            accVelX = 0
-            activated = true
-
-            listener(.swipe(direction: velX! < 0 ? .left : .right))
+            startGesture()
         }
     }
 
@@ -93,8 +88,8 @@ class SwipeManager {
     }
 
     enum EventType {
-        case swipe(direction: Direction)
-        case select
+        case start(direction: Direction)
+        case end
 
         enum Direction {
             case left

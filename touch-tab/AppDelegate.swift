@@ -19,11 +19,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         self.listener = SwipeManager.addSwipeListener {
             switch $0 {
-            case .swipe(.left):
+            case .start(.left):
                 AppDelegate.cmdShiftTab()
-            case .swipe(.right):
+            case .start(.right):
                 AppDelegate.cmdTab()
-            case .select:
+            case .end:
                 AppDelegate.selectInAppSwitcher()
             }
         }
