@@ -44,6 +44,11 @@ class SwipeManager {
                 return
             }
 
+            // Reset accVelX if the swipe has the opposite direction.
+            if velX!.sign != accVelX.sign {
+                accVelX = 0
+            }
+
             accVelX += velX!
             // Not enough swiping.
             if abs(accVelX) < accVelXThreshold {
