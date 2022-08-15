@@ -7,13 +7,13 @@ class SwipeManager {
         var accVelX: Float = 0
         var activated = false
 
-        func startGesture() {
+        func startOrContinueGesture() {
             let direction: EventType.Direction = accVelX < 0 ? .left : .right
 
             accVelX = 0
             activated = true
 
-            listener(.start(direction: direction))
+            listener(.startOrContinue(direction: direction))
         }
 
         func endGesture() {
@@ -60,7 +60,7 @@ class SwipeManager {
 
             //TODO: One powerful swipe leads to multiple switches!!!
 
-            startGesture()
+            startOrContinueGesture()
         }
     }
 
@@ -98,7 +98,7 @@ class SwipeManager {
     }
 
     enum EventType {
-        case start(direction: Direction)
+        case startOrContinue(direction: Direction)
         case end
 
         enum Direction {

@@ -19,9 +19,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         self.listener = SwipeManager.addSwipeListener {
             switch $0 {
-            case .start(.left):
+            case .startOrContinue(.left):
                 AppDelegate.cmdShiftTab()
-            case .start(.right):
+            case .startOrContinue(.right):
                 AppDelegate.cmdTab()
             case .end:
                 AppDelegate.selectInAppSwitcher()
