@@ -12,8 +12,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         createMenu()
 
-        if !AXIsProcessTrusted() {
-            //TODO: notify the user about it!
+        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
+        let accessEnabled = AXIsProcessTrustedWithOptions(options)
+        if !accessEnabled {
             return
         }
 
@@ -32,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private static func selectInAppSwitcher() {
         postKeyEvent(key: 0x37, down: false)
     }
-    
+
     private static func cmdTab() {
         postKeyEvent(key: tabKey, down: true, flags: .maskCommand)
         postKeyEvent(key: tabKey, down: false, flags: .maskCommand)
@@ -53,16 +54,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         event?.post(tap: CGEventTapLocation.cghidEventTap)
     }
-    
+
     func createMenu() {
-        let statusBar = NSStatusBar.system
-        statusBarItem = statusBar.statusItem(
-            withLength: NSStatusItem.variableLength)//TODO
-        statusBarItem.button?.title = "🌰"//TODO
+        statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        statusBarItem.button?.image = NSImage(named: "StatusIcon")
+        statusBarItem.button?.image?.isTemplate = true
+        statusBarItem.button?.toolTip = "Touch-Tab"
 
-        let statusBarMenu = NSMenu(title: "Touch-Tab")
+        let statusBarMenu = NSMenu(title: "")
         statusBarItem.menu = statusBarMenu
-
         statusBarMenu.addItem(
             withTitle: "Quit",
             action: #selector(AppDelegate.quit),
