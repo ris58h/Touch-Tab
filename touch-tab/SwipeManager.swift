@@ -1,8 +1,8 @@
 import M5MultitouchSupport
 
 class SwipeManager {
-    private static let accVelXThreshold: Float = 10
-    private static let debounceTimeBeforeActivation: Double = 0.1
+    private static let accVelXThreshold: Float = 7
+    private static let debounceTimeBeforeActivation: Double = 0.07
 
     static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
         var accVelX: Float = 0
