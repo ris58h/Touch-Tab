@@ -105,8 +105,6 @@ class SwipeManager {
     }
 
     static func removeSwipeListener(listener: M5MultitouchListener) {
-        //TODO: there is an issue with releasing devices. See https://github.com/mhuusko5/M5MultitouchSupport/issues/1
-        //TODO: consider to use https://github.com/Kyome22/OpenMultitouchSupport
         M5MultitouchManager.shared().remove(listener)
     }
 
