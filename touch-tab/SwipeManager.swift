@@ -34,12 +34,12 @@ class SwipeManager {
 
             //TODO: it has wrong size if casted 'as! [M5MultitouchTouch]'
             let touches: [Any] = event!.touches
+            let touchesCapacity = touchesCapacity(touches: touches)
 
             // We don't care about non-3-fingers swipes.
-            if touches.capacity != 3 {
+            if touchesCapacity != 3 {
                 // Except when we already started a gesture, so we need to end it.
-                //TODO: sometimes all fingers are released simultaneously, so we don't get 1-finger event and just stuck in App Switcher.
-                if (touches.capacity == 1 || touches.capacity > 3) {
+                if (touchesCapacity < 2 || touchesCapacity > 3) {
                     if activated {
                         endGesture()
                     } else if segmentStartTime != nil {
@@ -105,6 +105,14 @@ class SwipeManager {
         }
 
         return velX
+    }
+
+    private static func touchesCapacity(touches: [Any]) -> Int {
+        var res = 0
+        for _ in touches {
+            res += 1
+        }
+        return res
     }
 
     static func removeSwipeListener(listener: M5MultitouchListener) {
