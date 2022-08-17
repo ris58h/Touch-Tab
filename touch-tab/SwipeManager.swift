@@ -32,14 +32,12 @@ class SwipeManager {
                 return
             }
 
-            //TODO: it has wrong size if casted 'as! [M5MultitouchTouch]'
-            let touches: [Any] = event!.touches
-            let touchesCapacity = touchesCapacity(touches: touches)
+            let touches = event!.touches as! [M5MultitouchTouch]
 
             // We don't care about non-3-fingers swipes.
-            if touchesCapacity != 3 {
+            if touches.count != 3 {
                 // Except when we already started a gesture, so we need to end it.
-                if (touchesCapacity < 2 || touchesCapacity > 3) {
+                if (touches.count < 2 || touches.count > 3) {
                     if activated {
                         endGesture()
                     } else if segmentStartTime != nil {
@@ -80,39 +78,30 @@ class SwipeManager {
         }
     }
 
-    private static func horizontalSwipeVelocity(touches: [Any]) -> Float? {
+    private static func horizontalSwipeVelocity(touches: [M5MultitouchTouch]) -> Float? {
         var allRight = true
         var allLeft = true
         var sumVelX = Float(0)
         var sumVelY = Float(0)
         for touch in touches {
-            let mTouch = touch as! M5MultitouchTouch
-            allRight = allRight && mTouch.velX >= 0
-            allLeft = allLeft && mTouch.velX <= 0
-            sumVelX += mTouch.velX
-            sumVelY += mTouch.velY
+            allRight = allRight && touch.velX >= 0
+            allLeft = allLeft && touch.velX <= 0
+            sumVelX += touch.velX
+            sumVelY += touch.velY
         }
         // All fingers should move in the same direction.
         if !allRight && !allLeft {
             return nil
         }
 
-        let velX = sumVelX / Float(touches.capacity)
-        let velY = sumVelY / Float(touches.capacity)
+        let velX = sumVelX / Float(touches.count)
+        let velY = sumVelY / Float(touches.count)
         // Only horizontal swipes are interesting.
         if abs(velX) <= abs(velY) {
             return nil
         }
 
         return velX
-    }
-
-    private static func touchesCapacity(touches: [Any]) -> Int {
-        var res = 0
-        for _ in touches {
-            res += 1
-        }
-        return res
     }
 
     static func removeSwipeListener(listener: M5MultitouchListener) {
