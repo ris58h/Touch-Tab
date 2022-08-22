@@ -5,6 +5,7 @@
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+Touch-Tab.xcworkspace/
 
 # CocoaPods
 Pods/
