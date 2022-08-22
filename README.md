@@ -1,4 +1,7 @@
 # Touch-Tab
+
+![Touch-Tab_AdobeExpress_small](https://user-images.githubusercontent.com/511242/185958284-e0f962aa-3f88-4d95-9176-3f3fe49a24c8.gif)
+
 Emulate Command-Tab with Trackpad on macOS.
 Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
 Pause after the swipe (or do it slowly) to show the App Switcher.
