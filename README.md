@@ -19,3 +19,5 @@ Right-click the app and press `Open`, a pop-up will appear, click `Open` again.
 Allow the app to listen for trackpad events. Allow Touch-Tab to control your computer in `System Preferences > Security & Privacy > Accesibility`. Don't forget to restart the app if it's running!
 ## It still doesn't work
 Disable 3-finger swipe between full-screen apps or make it 4-finger. `System Preferences > Trackpad > More Gestures > Swipe between full-screen apps`.
+## Aaand it still doesn't work
+Please create an [issue](https://github.com/ris58h/Touch-Tab/issues).
