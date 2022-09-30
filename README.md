@@ -15,7 +15,7 @@ Hold after the swipe or swipe slowly to show the App Switcher UI.
 
 # Usage
 - Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
-- Hold after the swipe or swipe slowly to show the App Switcher UI. Pro tip: you can use 2-fingers scroll (which is faster) after the App Switcher is shown.
+- Hold after the swipe or swipe slowly to show the App Switcher UI. Pro tip: you can use 2-fingers scroll (which is faster) to switch apps in App Switcher.
 
 # Troubleshooting
 ## "Touch-Tab" can’t be opened because Apple cannot check it for malicious software
