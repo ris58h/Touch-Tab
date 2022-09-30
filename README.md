@@ -8,7 +8,7 @@ Hold after the swipe or swipe slowly to show the App Switcher.
 
 # Installation
 1. Download the latest `Touch-Tab-VERSION.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
-2. Unzip the archive and move the app into the /Applications folder.
+2. Unzip the archive and move the app into the `Applications` folder.
 3. The app is ad-hoc signed so macOS will warn you: `"Touch-Tab" can’t be opened because Apple cannot check it for malicious software`. Right-click the app and press `Open`, a pop-up will appear, click `Open` again.
 4. The app needs access to trackpad events. Allow Touch-Tab to control your computer in `System Preferences > Security & Privacy > Accesibility`. Don't forget to restart the app!
 5. Disable 3-finger swipe between full-screen apps or make it 4-finger in `System Preferences > Trackpad > More Gestures > Swipe between full-screen apps`.
