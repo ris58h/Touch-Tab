@@ -4,7 +4,7 @@
 
 Emulate Command-Tab with Trackpad on macOS.
 Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
-Hold after the swipe or swipe slowly to show the App Switcher.
+Hold after the swipe or swipe slowly to show the App Switcher UI.
 
 # Installation
 1. Download the latest `Touch-Tab-VERSION.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
@@ -15,7 +15,7 @@ Hold after the swipe or swipe slowly to show the App Switcher.
 
 # Usage
 - Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
-- Hold after the swipe or swipe slowly to show the App Switcher.
+- Hold after the swipe or swipe slowly to show the App Switcher UI. Pro tip: you can use 2-fingers scroll (which is faster) after the App Switcher is shown.
 
 # Troubleshooting
 ## "Touch-Tab" can’t be opened because Apple cannot check it for malicious software
