@@ -2,9 +2,9 @@
 
 ![Touch-Tab AppSwitcher](https://user-images.githubusercontent.com/511242/185958284-e0f962aa-3f88-4d95-9176-3f3fe49a24c8.gif)
 
-Emulate Command-Tab with Trackpad on macOS.
-Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
-Hold after the swipe or swipe slowly to show the App Switcher UI.
+Switch apps with trackpad on macOS.
+Use 3-fingers swipe right or 3-fingers swipe left to switch between apps.
+Hold after the swipe or swipe slowly to show App Switcher UI.
 
 # Installation
 1. Download the latest `Touch-Tab-VERSION.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
@@ -15,8 +15,8 @@ pop-up will appear, click `Open` again.
 5. Disable 3-finger swipe between full-screen apps or make it 4-finger in `System Settings > Trackpad > More Gestures > Swipe between full-screen apps`.
 
 # Usage
-- Use 3-fingers swipe right (emulates Command-Tab) or 3-fingers swipe left (emulates Command-Shift-Tab) to switch between apps.
-- Hold after the swipe or swipe slowly to show the App Switcher UI. Pro tip: you can use 2-fingers scroll (which is faster) to switch apps in App Switcher.
+- Use 3-fingers swipe right or 3-fingers swipe left to switch between apps.
+- Hold after the swipe or swipe slowly to show App Switcher UI. Pro tip: you can use 2-fingers scroll to switch apps in App Switcher faster.
 
 # Troubleshooting
 ## "Touch-Tab" can’t be opened because Apple cannot check it for malicious software
