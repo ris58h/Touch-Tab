@@ -21,7 +21,7 @@ pop-up will appear, click `Open` again.
 # Troubleshooting
 ## "Touch-Tab" can’t be opened because Apple cannot check it for malicious software
 Right-click the app and click `Open`, a pop-up will appear, click `Open` again.
-## It's running, but doesn't work
+## It's running but doesn't work
 - Check that Touch-Tab is allowed to control your computer in `System Settings > Privacy & Security > Accesibility`. Don't forget to restart the app!
 - Check that 3-finger swipe is disabled in `System Settings > Trackpad > More Gestures > Swipe between full-screen apps`.
 ## It still doesn't work
