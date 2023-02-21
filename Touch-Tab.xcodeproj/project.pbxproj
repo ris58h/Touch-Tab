@@ -332,7 +332,6 @@
 			baseConfigurationReference = 1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Touch-Tab/Touch_Tab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -361,7 +360,6 @@
 			baseConfigurationReference = B3C1D4067705F92EBBB19B65 /* Pods-Touch-Tab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Touch-Tab/Touch_Tab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
