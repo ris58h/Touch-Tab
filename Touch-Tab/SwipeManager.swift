@@ -7,14 +7,14 @@ class SwipeManager {
     static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
         var accVelX: Float = 0
         var activated = false
-        var segmentStartTime: Date? = nil
+        var touchStartTime: Date? = nil
 
         func startOrContinueGesture() {
             let direction: EventType.Direction = accVelX < 0 ? .left : .right
 
             accVelX = 0
             activated = true
-            segmentStartTime = nil
+            touchStartTime = nil
 
             listener(.startOrContinue(direction: direction))
         }
@@ -22,7 +22,7 @@ class SwipeManager {
         func endGesture() {
             accVelX = 0
             activated = false
-            segmentStartTime = nil
+            touchStartTime = nil
 
             listener(.end)
         }
@@ -40,7 +40,7 @@ class SwipeManager {
                 if (touches.count < 2 || touches.count > 3) {
                     if activated {
                         endGesture()
-                    } else if segmentStartTime != nil {
+                    } else if touchStartTime != nil {
                         // We have start event skipped due to debounce, so we need to call it first.
                         startOrContinueGesture()
                         endGesture()
@@ -67,10 +67,10 @@ class SwipeManager {
             }
 
             // Debounce events before activation to prevent multiple listener calls on one powerful swipe.
-            if segmentStartTime == nil {
-                segmentStartTime = Date()
+            if touchStartTime == nil {
+                touchStartTime = Date()
             }
-            if -segmentStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !activated {
+            if -touchStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !activated {
                 return
             }
 
