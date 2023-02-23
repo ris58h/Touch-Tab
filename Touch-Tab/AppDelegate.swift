@@ -13,10 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         createMenu()
 
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-        let accessEnabled = AXIsProcessTrustedWithOptions(options)
-        if !accessEnabled {
-            return
-        }
+        AXIsProcessTrustedWithOptions(options)
 
         self.listener = SwipeManager.addSwipeListener(AppDelegate.processSwipe)
     }
