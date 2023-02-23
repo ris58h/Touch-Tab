@@ -6,10 +6,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private static let tabKey = CGKeyCode(0x30);
     private static let leftCommandKey = CGKeyCode(0x37);
 
-    var statusBarItem: NSStatusItem!
-
-    var listener: M5MultitouchListener?
-
+    private var statusBarItem: NSStatusItem!
+    private var listener: M5MultitouchListener?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         createMenu()
 
@@ -19,15 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        self.listener = SwipeManager.addSwipeListener {
-            switch $0 {
-            case .startOrContinue(.left):
-                AppDelegate.cmdShiftTab()
-            case .startOrContinue(.right):
-                AppDelegate.cmdTab()
-            case .end:
-                AppDelegate.selectInAppSwitcher()
-            }
+        self.listener = SwipeManager.addSwipeListener(AppDelegate.processSwipe)
+    }
+    
+    private static func processSwipe(_ eventType: SwipeManager.EventType) {
+        switch eventType {
+        case .startOrContinue(.left):
+            AppDelegate.cmdShiftTab()
+        case .startOrContinue(.right):
+            AppDelegate.cmdTab()
+        case .end:
+            AppDelegate.selectInAppSwitcher()
         }
     }
 
@@ -72,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func quit() {
         if self.listener != nil {
-            SwipeManager.removeSwipeListener(listener: self.listener!)
+            SwipeManager.removeSwipeListener(self.listener!)
         }
         NSApplication.shared.terminate(self)
     }

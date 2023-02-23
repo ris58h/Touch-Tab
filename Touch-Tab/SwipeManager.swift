@@ -4,7 +4,7 @@ class SwipeManager {
     private static let accVelXThreshold: Float = 7
     private static let debounceTimeBeforeActivation: Double = 0.07
 
-    static func addSwipeListener(listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
+    static func addSwipeListener(_ listener: @escaping (EventType) -> Void) -> M5MultitouchListener? {
         var accVelX: Float = 0
         var activated = false
         var touchStartTime: Date? = nil
@@ -104,7 +104,7 @@ class SwipeManager {
         return velX
     }
 
-    static func removeSwipeListener(listener: M5MultitouchListener) {
+    static func removeSwipeListener(_ listener: M5MultitouchListener) {
         M5MultitouchManager.shared().remove(listener)
     }
 
