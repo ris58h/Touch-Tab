@@ -4,6 +4,7 @@ import CoreGraphics
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private static let tabKey = CGKeyCode(0x30);
+    private static let leftCommandKey = CGKeyCode(0x37);
 
     var statusBarItem: NSStatusItem!
 
@@ -31,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private static func selectInAppSwitcher() {
-        postKeyEvent(key: 0x37, down: false)
+        postKeyEvent(key: leftCommandKey, down: false)
     }
 
     private static func cmdTab() {
