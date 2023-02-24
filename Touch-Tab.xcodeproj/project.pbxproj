@@ -18,7 +18,6 @@
 		17147BD098F50957F7C7ADCB /* Pods_Touch_Tab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Touch_Tab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Touch-Tab.debug.xcconfig"; path = "Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab.debug.xcconfig"; sourceTree = "<group>"; };
 		58BC5B1528B3C37B0013EAD3 /* Touch-Tab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch-Tab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		58BC5B1C28B3C37E0013EAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58BC5B2128B3C37E0013EAD3 /* Touch_Tab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Touch_Tab.entitlements; sourceTree = "<group>"; };
 		58BC5B2728B3C4690013EAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeManager.swift; sourceTree = "<group>"; };
@@ -66,7 +65,6 @@
 				58BC5B2B28B3C4C30013EAD3 /* main.swift */,
 				58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */,
 				58BC5B2728B3C4690013EAD3 /* Info.plist */,
-				58BC5B1C28B3C37E0013EAD3 /* Assets.xcassets */,
 				58BC5B2128B3C37E0013EAD3 /* Touch_Tab.entitlements */,
 			);
 			path = "Touch-Tab";
