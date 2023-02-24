@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "StatusIcon_16x16.png",
+      "filename" : "StatusIcon-Warning_22x22.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "StatusIcon_32x32.png",
+      "filename" : "StatusIcon-Warning_44x44.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -6,14 +6,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private static let tabKey = CGKeyCode(0x30);
     private static let leftCommandKey = CGKeyCode(0x37);
 
+    private static let statusIcon = templateImage(named: "StatusIcon")
+    private static let statusIconWarning = templateImage(named: "StatusIcon-Warning")
+    
     private var statusBarItem: NSStatusItem!
     private var listener: M5MultitouchListener?
+
+    private static func templateImage(named: String) -> NSImage? {
+        let image = NSImage(named: named)
+        image?.isTemplate = true
+        return image
+    }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         createMenu()
 
-        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-        AXIsProcessTrustedWithOptions(options)
+        warnAboutAccessibilityPermissionIfNeeded()
 
         self.listener = SwipeManager.addSwipeListener(AppDelegate.processSwipe)
     }
@@ -54,10 +62,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         event?.post(tap: CGEventTapLocation.cghidEventTap)
     }
 
-    func createMenu() {
+    private func warnAboutAccessibilityPermissionIfNeeded() {
+        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
+        let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
+        if !isAccessibilityPermissionGranted {
+            statusBarItem.button?.image = AppDelegate.statusIconWarning
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+                if AXIsProcessTrusted() {
+                    statusBarItem.button?.image = AppDelegate.statusIcon
+                    timer.invalidate()
+                }
+            }
+        }
+    }
+
+    private func createMenu() {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        statusBarItem.button?.image = NSImage(named: "StatusIcon")
-        statusBarItem.button?.image?.isTemplate = true
+        statusBarItem.button?.image = AppDelegate.statusIcon
         statusBarItem.button?.toolTip = "Touch-Tab"
 
         let statusBarMenu = NSMenu(title: "")
@@ -68,7 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             keyEquivalent: "")
     }
 
-    @objc func quit() {
+    @objc private func quit() {
         if self.listener != nil {
             SwipeManager.removeSwipeListener(self.listener!)
         }
