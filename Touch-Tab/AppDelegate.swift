@@ -8,32 +8,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private static let statusIcon = templateImage(named: "StatusIcon")
     private static let statusIconWarning = templateImage(named: "StatusIcon-Warning")
-    
+
     private var statusBarItem: NSStatusItem!
-    private var listener: M5MultitouchListener?
+    private var listener: M5MultitouchListener!
 
     private static func templateImage(named: String) -> NSImage? {
         let image = NSImage(named: named)
         image?.isTemplate = true
         return image
     }
-    
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         createMenu()
-
         warnAboutAccessibilityPermissionIfNeeded()
-
-        self.listener = SwipeManager.addSwipeListener(AppDelegate.processSwipe)
+        addSwipeListener()
     }
     
-    private static func processSwipe(_ eventType: SwipeManager.EventType) {
-        switch eventType {
-        case .startOrContinue(.left):
-            AppDelegate.cmdShiftTab()
-        case .startOrContinue(.right):
-            AppDelegate.cmdTab()
-        case .end:
-            AppDelegate.selectInAppSwitcher()
+    private func addSwipeListener() {
+        self.listener = SwipeManager.addSwipeListener {
+            switch $0 {
+            case .startOrContinue(.left):
+                AppDelegate.cmdShiftTab()
+            case .startOrContinue(.right):
+                AppDelegate.cmdTab()
+            case .end:
+                AppDelegate.selectInAppSwitcher()
+            }
         }
     }
 
@@ -91,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func quit() {
         if self.listener != nil {
-            SwipeManager.removeSwipeListener(self.listener!)
+            SwipeManager.removeSwipeListener(self.listener)
         }
         NSApplication.shared.terminate(self)
     }
