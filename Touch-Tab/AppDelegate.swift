@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusBarMenu = NSMenu(title: "")
         statusBarItem.menu = statusBarMenu
         statusBarMenu.addItem(
-            withTitle: "Quit",
+            withTitle: "Quit Touch-Tab",
             action: #selector(AppDelegate.quit),
             keyEquivalent: "")
     }
