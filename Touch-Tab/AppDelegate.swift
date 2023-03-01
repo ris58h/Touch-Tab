@@ -1,6 +1,5 @@
 import Cocoa
 import M5MultitouchSupport
-import CoreGraphics
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     private static let tabKey = CGKeyCode(0x30);
