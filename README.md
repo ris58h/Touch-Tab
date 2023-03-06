@@ -24,5 +24,7 @@ Right-click the app and click `Open`, a pop-up will appear, click `Open` again.
 ## It's running but doesn't work
 - Check that Touch-Tab is allowed to control your computer in `System Settings > Privacy & Security > Accesibility`. Don't forget to restart the app!
 - Check that 3-finger swipe is disabled in `System Settings > Trackpad > More Gestures > Swipe between full-screen apps`.
+## 3-finger swipe scrolls a content
+It's a [known issue](https://github.com/ris58h/Touch-Tab/issues/1). The workaround is to setup `Mission Control` or `App Expose` to use 3-finger swipe.
 ## It still doesn't work
 Please create an [issue](https://github.com/ris58h/Touch-Tab/issues).
