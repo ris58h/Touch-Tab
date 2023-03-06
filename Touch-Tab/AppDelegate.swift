@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        createMenu()
+        createStatusBarItem()
         warnAboutAccessibilityPermissionIfNeeded()
         addSwipeListener()
     }
@@ -66,28 +66,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
         if !isAccessibilityPermissionGranted {
             statusBarItem.button?.image = AppDelegate.statusIconWarning
+            statusBarItem.menu?.insertItem(AppDelegate.accessibilityWarningMenuItem(), at: 0)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
                 if AXIsProcessTrusted() {
                     statusBarItem.button?.image = AppDelegate.statusIcon
+                    statusBarItem.menu?.removeItem(at: 0)
                     timer.invalidate()
                 }
             }
         }
     }
 
-    private func createMenu() {
+    private func createStatusBarItem() {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusBarItem.button?.image = AppDelegate.statusIcon
         statusBarItem.button?.toolTip = "Touch-Tab"
 
-        let statusBarMenu = NSMenu(title: "")
-        statusBarItem.menu = statusBarMenu
-        statusBarMenu.addItem(
+        statusBarItem.menu = NSMenu()
+        statusBarItem.menu?.addItem(
             withTitle: "Quit Touch-Tab",
             action: #selector(AppDelegate.quit),
             keyEquivalent: "")
     }
+    
+    private static func accessibilityWarningMenuItem() -> NSMenuItem {
+        let menuItem = NSMenuItem(title: "Open System Settings", action: #selector(openPrivacyAccessibility), keyEquivalent: "")
+        menuItem.image = templateImage(named: "MenuItem-Warning")
+        menuItem.toolTip = "Grant access to this application in Privacy & Secutiry settings, located in System Settings"
+        return menuItem
+    }
 
+    @objc private func openPrivacyAccessibility() {
+        let privacyAccessibilityURL = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!
+        NSWorkspace.shared.open(privacyAccessibilityURL)
+    }
+    
     @objc private func quit() {
         if self.listener != nil {
             SwipeManager.removeSwipeListener(self.listener)
