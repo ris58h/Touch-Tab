@@ -65,12 +65,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
         let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
         if !isAccessibilityPermissionGranted {
-            statusBarItem.button?.image = AppDelegate.statusIconWarning
-            statusBarItem.menu?.insertItem(AppDelegate.accessibilityWarningMenuItem(), at: 0)
+            addAccessiblityWarning()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
                 if AXIsProcessTrusted() {
-                    statusBarItem.button?.image = AppDelegate.statusIcon
-                    statusBarItem.menu?.removeItem(at: 0)
+                    removeAccessibilityWarning()
                     timer.invalidate()
                 }
             }
@@ -89,11 +87,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             keyEquivalent: "")
     }
     
-    private static func accessibilityWarningMenuItem() -> NSMenuItem {
-        let menuItem = NSMenuItem(title: "Open System Settings", action: #selector(openPrivacyAccessibility), keyEquivalent: "")
-        menuItem.image = templateImage(named: "MenuItem-Warning")
-        menuItem.toolTip = "Grant access to this application in Privacy & Secutiry settings, located in System Settings"
-        return menuItem
+    private func addAccessiblityWarning() {
+        statusBarItem.button?.image = AppDelegate.statusIconWarning
+        let warningDescriptionMenuItem = NSMenuItem(title: "No Accessibility Access", action: nil, keyEquivalent: "")
+        warningDescriptionMenuItem.image = AppDelegate.templateImage(named: "MenuItem-Warning")
+        warningDescriptionMenuItem.toolTip = "Grant access to this application in Privacy & Secutiry settings, located in System Settings"
+        warningDescriptionMenuItem.isEnabled = false
+        let openPrivacyAccessibilityMenuItem = NSMenuItem(title: "Authorize...", action: #selector(openPrivacyAccessibility), keyEquivalent: "")
+        statusBarItem.menu?.insertItem(warningDescriptionMenuItem, at: 0)
+        statusBarItem.menu?.insertItem(openPrivacyAccessibilityMenuItem, at: 1)
+        statusBarItem.menu?.insertItem(NSMenuItem.separator(), at: 2)
+    }
+    
+    private func removeAccessibilityWarning() {
+        statusBarItem.button?.image = AppDelegate.statusIcon
+        statusBarItem.menu?.removeItem(at: 2)
+        statusBarItem.menu?.removeItem(at: 1)
+        statusBarItem.menu?.removeItem(at: 0)
     }
 
     @objc private func openPrivacyAccessibility() {
