@@ -1,15 +1,10 @@
 import Cocoa
-import M5MultitouchSupport
 
 class AppDelegate: NSObject, NSApplicationDelegate {
-    private static let tabKey = CGKeyCode(0x30);
-    private static let leftCommandKey = CGKeyCode(0x37);
-
     private static let statusIcon = templateImage(named: "StatusIcon")
     private static let statusIconWarning = templateImage(named: "StatusIcon-Warning")
 
     private var statusBarItem: NSStatusItem!
-    private var listener: M5MultitouchListener!
 
     private static func templateImage(named: String) -> NSImage? {
         let image = NSImage(named: named)
@@ -19,57 +14,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         createStatusBarItem()
-        warnAboutAccessibilityPermissionIfNeeded()
-        addSwipeListener()
-    }
-    
-    private func addSwipeListener() {
-        self.listener = SwipeManager.addSwipeListener {
-            switch $0 {
-            case .startOrContinue(.left):
-                AppDelegate.cmdShiftTab()
-            case .startOrContinue(.right):
-                AppDelegate.cmdTab()
-            case .end:
-                AppDelegate.selectInAppSwitcher()
-            }
+        requestAccessibilityPermission() {
+            SwipeManager.start()
         }
     }
 
-    private static func selectInAppSwitcher() {
-        postKeyEvent(key: leftCommandKey, down: false)
-    }
-
-    private static func cmdTab() {
-        postKeyEvent(key: tabKey, down: true, flags: .maskCommand)
-        postKeyEvent(key: tabKey, down: false, flags: .maskCommand)
-    }
-
-    private static func cmdShiftTab() {
-        postKeyEvent(key: tabKey, down: true, flags: [.maskCommand, .maskShift])
-        postKeyEvent(key: tabKey, down: false, flags: [.maskCommand, .maskShift])
-    }
-
-    private static func postKeyEvent(key: CGKeyCode, down: Bool, flags: CGEventFlags? = nil) {
-        let event = CGEvent(
-            keyboardEventSource: CGEventSource(stateID: CGEventSourceStateID.hidSystemState),
-            virtualKey: CGKeyCode(key),
-            keyDown: down)
-        if flags != nil {
-            event?.flags = flags!
-        }
-        event?.post(tap: CGEventTapLocation.cghidEventTap)
-    }
-
-    private func warnAboutAccessibilityPermissionIfNeeded() {
+    private func requestAccessibilityPermission(completion: @escaping ()->()) {
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
         let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
-        if !isAccessibilityPermissionGranted {
-            addAccessiblityWarning()
+        if isAccessibilityPermissionGranted {
+            completion()
+        } else {
+            addAccessibilityWarning()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
                 if AXIsProcessTrusted() {
                     removeAccessibilityWarning()
                     timer.invalidate()
+                    completion()
                 }
             }
         }
@@ -87,11 +48,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             keyEquivalent: "")
     }
     
-    private func addAccessiblityWarning() {
+    private func addAccessibilityWarning() {
         statusBarItem.button?.image = AppDelegate.statusIconWarning
         let warningDescriptionMenuItem = NSMenuItem(title: "No Accessibility Access", action: nil, keyEquivalent: "")
         warningDescriptionMenuItem.image = AppDelegate.templateImage(named: "MenuItem-Warning")
-        warningDescriptionMenuItem.toolTip = "Grant access to this application in Privacy & Secutiry settings, located in System Settings"
+        warningDescriptionMenuItem.toolTip = "Grant access to this application in Privacy & Security settings, located in System Settings"
         warningDescriptionMenuItem.isEnabled = false
         let openPrivacyAccessibilityMenuItem = NSMenuItem(title: "Authorize...", action: #selector(openPrivacyAccessibility), keyEquivalent: "")
         statusBarItem.menu?.insertItem(warningDescriptionMenuItem, at: 0)
@@ -112,9 +73,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func quit() {
-        if self.listener != nil {
-            SwipeManager.removeSwipeListener(self.listener)
-        }
         NSApplication.shared.terminate(self)
     }
 }
