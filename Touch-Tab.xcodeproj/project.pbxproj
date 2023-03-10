@@ -12,19 +12,15 @@
 		58BC5B2D28B3C4C30013EAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */; };
 		58BC5B2E28B3C4C30013EAD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */; };
 		58BC5B2F28B3C4C30013EAD3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2B28B3C4C30013EAD3 /* main.swift */; };
-		A36F43A88C3243287D04CAD5 /* Pods_Touch_Tab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17147BD098F50957F7C7ADCB /* Pods_Touch_Tab.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		17147BD098F50957F7C7ADCB /* Pods_Touch_Tab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Touch_Tab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Touch-Tab.debug.xcconfig"; path = "Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab.debug.xcconfig"; sourceTree = "<group>"; };
 		588922D329BB490400F7F843 /* AppSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSwitcher.swift; sourceTree = "<group>"; };
 		58BC5B1528B3C37B0013EAD3 /* Touch-Tab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch-Tab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeManager.swift; sourceTree = "<group>"; };
 		58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58BC5B2B28B3C4C30013EAD3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		B3C1D4067705F92EBBB19B65 /* Pods-Touch-Tab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Touch-Tab.release.xcconfig"; path = "Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +28,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A36F43A88C3243287D04CAD5 /* Pods_Touch_Tab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +39,6 @@
 			children = (
 				58BC5B1728B3C37B0013EAD3 /* Touch-Tab */,
 				58BC5B1628B3C37B0013EAD3 /* Products */,
-				A2B80F83936961C5C3F28572 /* Pods */,
-				6D6950BC78689AB15795512E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,23 +62,6 @@
 			path = "Touch-Tab";
 			sourceTree = "<group>";
 		};
-		6D6950BC78689AB15795512E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				17147BD098F50957F7C7ADCB /* Pods_Touch_Tab.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A2B80F83936961C5C3F28572 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */,
-				B3C1D4067705F92EBBB19B65 /* Pods-Touch-Tab.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -93,11 +69,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58BC5B2428B3C37E0013EAD3 /* Build configuration list for PBXNativeTarget "Touch-Tab" */;
 			buildPhases = (
-				881F4272666388D0746F318E /* [CP] Check Pods Manifest.lock */,
 				58BC5B1128B3C37B0013EAD3 /* Sources */,
 				58BC5B1228B3C37B0013EAD3 /* Frameworks */,
 				58BC5B1328B3C37B0013EAD3 /* Resources */,
-				80C7D22DFBC23F14041A8EC9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,48 +126,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		80C7D22DFBC23F14041A8EC9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		881F4272666388D0746F318E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Touch-Tab-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58BC5B1128B3C37B0013EAD3 /* Sources */ = {
@@ -325,7 +257,6 @@
 		};
 		58BC5B2528B3C37E0013EAD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -352,7 +283,6 @@
 		};
 		58BC5B2628B3C37E0013EAD3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3C1D4067705F92EBBB19B65 /* Pods-Touch-Tab.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
