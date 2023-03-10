@@ -19,7 +19,6 @@
 		1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Touch-Tab.debug.xcconfig"; path = "Target Support Files/Pods-Touch-Tab/Pods-Touch-Tab.debug.xcconfig"; sourceTree = "<group>"; };
 		58BC5B1528B3C37B0013EAD3 /* Touch-Tab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Touch-Tab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		58BC5B2128B3C37E0013EAD3 /* Touch_Tab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Touch_Tab.entitlements; sourceTree = "<group>"; };
-		58BC5B2728B3C4690013EAD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeManager.swift; sourceTree = "<group>"; };
 		58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +63,6 @@
 				58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */,
 				58BC5B2B28B3C4C30013EAD3 /* main.swift */,
 				58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */,
-				58BC5B2728B3C4690013EAD3 /* Info.plist */,
 				58BC5B2128B3C37E0013EAD3 /* Touch_Tab.entitlements */,
 			);
 			path = "Touch-Tab";
@@ -327,7 +325,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1895588D30A0C0EE053A4AD3 /* Pods-Touch-Tab.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Touch-Tab/Touch_Tab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -336,8 +333,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Touch-Tab/Assets.xcassets\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Touch-Tab/Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -355,7 +351,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3C1D4067705F92EBBB19B65 /* Pods-Touch-Tab.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Touch-Tab/Touch_Tab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -364,8 +359,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Touch-Tab/Assets.xcassets\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Touch-Tab/Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_LSUIElement = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
