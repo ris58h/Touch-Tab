@@ -22,6 +22,10 @@ class SwipeManager {
     }
 
     static func start() {
+        if eventTap != nil {
+            debugPrint("SwipeManager is already started")
+            return
+        }
         eventTap = CGEvent.tapCreate(
             tap: .cghidEventTap,
             place: .headInsertEventTap,
