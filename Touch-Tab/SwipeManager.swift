@@ -104,22 +104,23 @@ class SwipeManager {
         startOrContinueGesture()
     }
     
-    private static func startOrContinueGesture() {
-        let direction: EventType.Direction = accVelX < 0 ? .left : .right
-
+    private static func clearState() {
         accVelX = 0
-        activated = true
         touchStartTime = nil
-
+        prevTouchPositions.removeAll()
+    }
+    
+    private static func startOrContinueGesture() {
+        activated = true
+        let direction: EventType.Direction = accVelX < 0 ? .left : .right
         listener(.startOrContinue(direction: direction))
+        clearState()
     }
 
     private static func endGesture() {
-        accVelX = 0
         activated = false
-        touchStartTime = nil
-
         listener(.end)
+        clearState()
     }
 
     private static func horizontalSwipeVelocity(touches: Set<NSTouch>) -> Float? {
