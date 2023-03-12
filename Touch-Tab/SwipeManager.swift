@@ -1,5 +1,6 @@
 import Cocoa
 
+//TODO: sometimes there is unexpected debounced endGesture. Usually when clicking with 3 fingers.
 class SwipeManager {
     private static let accVelXThreshold: Float = 0.07
     private static let debounceTimeBeforeActivation: Double = 0.07
@@ -82,11 +83,6 @@ class SwipeManager {
         // We don't care about non-horizontal swipes.
         if velX == nil {
             return
-        }
-
-        // Reset acc if the swipe has the opposite direction to have a smoother experience.
-        if velX!.sign != accVelX.sign {
-            accVelX = 0
         }
 
         accVelX += velX!
