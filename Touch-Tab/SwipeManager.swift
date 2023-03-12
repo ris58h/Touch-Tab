@@ -8,7 +8,7 @@ class SwipeManager {
     private static var eventTap: CFMachPort? = nil
     private static var accVelX: Float = 0
     private static var prevTouchPositions: [String: NSPoint] = [:]
-    private static var touchStartTime: Date? = nil
+    private static var debounceStartTime: Date? = nil
 
     //TODO: move it somewhere else?
     private static func listener(_ eventType: EventType) {
@@ -70,7 +70,7 @@ class SwipeManager {
             if touchesCount < 2 || touchesCount > 3 {
                 if AppSwitcher.isActive {
                     endGesture()
-                } else if touchStartTime != nil {
+                } else if debounceStartTime != nil {
                     // We have start event skipped due to debounce, so we need to call it first.
                     startOrContinueGesture()
                     endGesture()
@@ -92,10 +92,10 @@ class SwipeManager {
         }
 
         // Debounce events before activation to prevent multiple listener calls on one powerful swipe.
-        if touchStartTime == nil {
-            touchStartTime = Date()
+        if debounceStartTime == nil {
+            debounceStartTime = Date()
         }
-        if -touchStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !AppSwitcher.isActive {
+        if -debounceStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !AppSwitcher.isActive {
             return
         }
 
@@ -105,7 +105,7 @@ class SwipeManager {
     private static func clearState() {
         accVelX = 0
         prevTouchPositions.removeAll()
-        touchStartTime = nil
+        debounceStartTime = nil
     }
     
     private static func startOrContinueGesture() {
