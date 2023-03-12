@@ -37,6 +37,7 @@ class SwipeManager {
             userInfo: nil
         )
         if eventTap == nil {
+            debugPrint("SwipeManager couldn't create event tap")
             return
         }
         
