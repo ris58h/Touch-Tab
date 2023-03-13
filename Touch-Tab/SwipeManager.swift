@@ -29,7 +29,7 @@ class SwipeManager {
         eventTap = CGEvent.tapCreate(
             tap: .cghidEventTap,
             place: .headInsertEventTap,
-            options: .defaultTap,
+            options: .listenOnly,
             eventsOfInterest: NSEvent.EventTypeMask.gesture.rawValue,
             callback: { proxy, type, cgEvent, userInfo in
                 return SwipeManager.eventHandler(proxy: proxy, eventType: type, cgEvent: cgEvent, userInfo: userInfo)
