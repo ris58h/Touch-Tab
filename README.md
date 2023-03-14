@@ -7,7 +7,7 @@ Use 3-fingers swipe right or 3-fingers swipe left to switch between apps.
 Hold after the swipe or swipe slowly to show App Switcher UI.
 
 ## Installation
-1. Download the [latest](https://github.com/ris58h/Touch-Tab/releases/download/v1.2.0/Touch-Tab-1.2.0.zip) `Touch-Tab-VERSION.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
+1. Download the [latest](https://github.com/ris58h/Touch-Tab/releases/latest/download/Touch-Tab.zip) `Touch-Tab.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
 2. Unzip the archive and move `Touch-Tab.app` into the `Applications` folder.
 3. The app is ad-hoc signed so when you run the app macOS will warn you: `"Touch-Tab" can’t be opened because Apple cannot check it for malicious software`. Right-click the app and click `Open`, a 
 pop-up will appear, click `Open` again.
