@@ -1,6 +1,7 @@
 import Cocoa
 
 class AppSwitcher {
+    private static let keyboardEventSource = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
     private static let tabKey = CGKeyCode(0x30);
     private static let leftCommandKey = CGKeyCode(0x37);
 
@@ -27,14 +28,9 @@ class AppSwitcher {
         isActive = true
     }
 
-    private static func postKeyEvent(key: CGKeyCode, down: Bool, flags: CGEventFlags? = nil) {
-        let event = CGEvent(
-            keyboardEventSource: CGEventSource(stateID: CGEventSourceStateID.hidSystemState),
-            virtualKey: CGKeyCode(key),
-            keyDown: down)
-        if flags != nil {
-            event?.flags = flags!
-        }
+    private static func postKeyEvent(key: CGKeyCode, down: Bool, flags: CGEventFlags = []) {
+        let event = CGEvent(keyboardEventSource: keyboardEventSource, virtualKey: key, keyDown: down)
+        event?.flags = flags
         event?.post(tap: CGEventTapLocation.cghidEventTap)
     }
 }
