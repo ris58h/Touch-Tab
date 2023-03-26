@@ -12,6 +12,7 @@
 		58BC5B2D28B3C4C30013EAD3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */; };
 		58BC5B2E28B3C4C30013EAD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */; };
 		58BC5B2F28B3C4C30013EAD3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2B28B3C4C30013EAD3 /* main.swift */; };
+		58DE49CA29D09BB70025BE44 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DE49C929D09BB70025BE44 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58BC5B2B28B3C4C30013EAD3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		58DE49C929D09BB70025BE44 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -48,6 +50,7 @@
 				58BC5B2B28B3C4C30013EAD3 /* main.swift */,
 				58BC5B2828B3C4C30013EAD3 /* SwipeManager.swift */,
 				588922D329BB490400F7F843 /* AppSwitcher.swift */,
+				58DE49C929D09BB70025BE44 /* AboutView.swift */,
 			);
 			path = "Touch-Tab";
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 				58BC5B2C28B3C4C30013EAD3 /* SwipeManager.swift in Sources */,
 				588922D429BB490400F7F843 /* AppSwitcher.swift in Sources */,
 				58BC5B2F28B3C4C30013EAD3 /* main.swift in Sources */,
+				58DE49CA29D09BB70025BE44 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +261,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Touch-Tab";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Ilya Rodionov";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -283,6 +288,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Touch-Tab";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Ilya Rodionov";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
