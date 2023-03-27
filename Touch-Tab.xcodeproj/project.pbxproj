@@ -13,6 +13,7 @@
 		58BC5B2E28B3C4C30013EAD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */; };
 		58BC5B2F28B3C4C30013EAD3 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BC5B2B28B3C4C30013EAD3 /* main.swift */; };
 		58DE49CA29D09BB70025BE44 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DE49C929D09BB70025BE44 /* AboutView.swift */; };
+		58FBBBE529D20D3600A15F66 /* BundleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FBBBE429D20D3600A15F66 /* BundleInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58BC5B2B28B3C4C30013EAD3 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		58DE49C929D09BB70025BE44 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		58FBBBE429D20D3600A15F66 /* BundleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -45,6 +47,7 @@
 		58BC5B1728B3C37B0013EAD3 /* Touch-Tab */ = {
 			isa = PBXGroup;
 			children = (
+				58FBBBE429D20D3600A15F66 /* BundleInfo.swift */,
 				58BC5B2A28B3C4C30013EAD3 /* AppDelegate.swift */,
 				58BC5B2928B3C4C30013EAD3 /* Assets.xcassets */,
 				58BC5B2B28B3C4C30013EAD3 /* main.swift */,
@@ -127,6 +130,7 @@
 				58BC5B2E28B3C4C30013EAD3 /* AppDelegate.swift in Sources */,
 				58BC5B2C28B3C4C30013EAD3 /* SwipeManager.swift in Sources */,
 				588922D429BB490400F7F843 /* AppSwitcher.swift in Sources */,
+				58FBBBE529D20D3600A15F66 /* BundleInfo.swift in Sources */,
 				58BC5B2F28B3C4C30013EAD3 /* main.swift in Sources */,
 				58DE49CA29D09BB70025BE44 /* AboutView.swift in Sources */,
 			);

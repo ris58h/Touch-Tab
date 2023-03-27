@@ -47,11 +47,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func createStatusBarItem() {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusBarItem.button?.image = AppDelegate.statusIcon
-        statusBarItem.button?.toolTip = "Touch-Tab"
+        statusBarItem.button?.toolTip = BundleInfo.displayName()
 
         statusBarItem.menu = NSMenu()
         statusBarItem.menu?.addItem(
-            withTitle: "About Touch-Tab",
+            withTitle: "About \(BundleInfo.displayName())",
             action: #selector(AppDelegate.showAbout),
             keyEquivalent: "")
         statusBarItem.menu?.addItem(
