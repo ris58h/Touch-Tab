@@ -26,6 +26,7 @@ class SwipeManager {
             debugPrint("SwipeManager is already started")
             return
         }
+        debugPrint("SwipeManager start")
         eventTap = CGEvent.tapCreate(
             tap: .cghidEventTap,
             place: .headInsertEventTap,

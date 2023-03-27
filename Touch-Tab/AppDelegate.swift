@@ -93,14 +93,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             aboutWindow = NSWindow(contentViewController: NSHostingController(rootView: AboutView().fixedSize()))
             aboutWindow.styleMask = [.closable, .titled]
             aboutWindow.title = ""
-
-//            aboutWindow = NSWindow(
-//                contentRect: .zero,
-//                styleMask: [.closable, .titled],
-//                backing: .buffered, defer: false)
-//            aboutWindow.title = "About Touch-Tab"
-//            aboutWindow.contentView = NSHostingView(rootView: AboutView().fixedSize())
-//            aboutWindow.isReleasedWhenClosed = false
         }
         aboutWindow.center()
         aboutWindow.makeKeyAndOrderFront(nil)
