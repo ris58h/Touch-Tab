@@ -30,12 +30,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func requestAccessibilityPermission(completion: @escaping ()->()) {
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
         let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
+        debugPrint("Accessibility permission", isAccessibilityPermissionGranted)
         if isAccessibilityPermissionGranted {
             completion()
         } else {
             addAccessibilityWarning()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
                 if AXIsProcessTrusted() {
+                    debugPrint("Accessibility permission granted")
                     removeAccessibilityWarning()
                     timer.invalidate()
                     completion()

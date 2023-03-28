@@ -51,6 +51,7 @@ class SwipeManager {
         if eventType.rawValue == NSEvent.EventType.gesture.rawValue, let nsEvent = NSEvent(cgEvent: cgEvent) {
             touchEventHandler(nsEvent)
         } else if (eventType == .tapDisabledByUserInput || eventType == .tapDisabledByTimeout) {
+            debugPrint("SwipeManager tap disabled", eventType.rawValue)
             CGEvent.tapEnable(tap: eventTap!, enable: true)
         }
         return Unmanaged.passUnretained(cgEvent)
