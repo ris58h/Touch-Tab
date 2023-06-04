@@ -69,19 +69,19 @@ class SwipeManager {
         }
         let touchesCount = touches.allSatisfy({ $0.phase == .ended }) ? 0 : touches.count
 
-        if touchesCount == 2 {
-            // Scroll in App Switcher is OK. Do nothing.
-            clearEventState()
-            return
-        } else if touchesCount == 3 {
-            // Handle 3-fingers swipe.
-        } else {
-            if startTime != nil {
-                endGesture()
-            }
-            return
+        switch touchesCount {
+        case 2: processTwoFingers()
+        case 3: processThreeFingers(touches: touches)
+        default: processOtherFingers()
         }
+    }
 
+    private static func processTwoFingers() {
+        // Two fingers scrolling in App Switcher is OK but we shouldn't accumulate gesture velocity here.
+        clearEventState()
+    }
+
+    private static func processThreeFingers(touches: Set<NSTouch>) {
         let velX = SwipeManager.horizontalSwipeVelocity(touches: touches)
         // We don't care about non-horizontal swipes.
         if velX == nil {
@@ -94,20 +94,6 @@ class SwipeManager {
             return
         }
 
-        startOrContinueGesture()
-    }
-
-    private static func clearEventState() {
-        accVelX = 0
-        prevTouchPositions.removeAll()
-    }
-
-    private static func clearGestureState() {
-        clearEventState()
-        startTime = nil
-    }
-
-    private static func startOrContinueGesture() {
         if startTime == nil {
             startTime = Date()
         } else {
@@ -119,14 +105,30 @@ class SwipeManager {
             }
         }
 
+        startOrContinueGesture()
+        clearEventState()
+    }
+
+    private static func processOtherFingers() {
+        if startTime != nil {
+            endGesture()
+            clearEventState()
+            startTime = nil
+        }
+    }
+
+    private static func clearEventState() {
+        accVelX = 0
+        prevTouchPositions.removeAll()
+    }
+
+    private static func startOrContinueGesture() {
         let direction: EventType.Direction = accVelX < 0 ? .left : .right
         listener(.startOrContinue(direction: direction))
-        clearEventState()
     }
 
     private static func endGesture() {
         listener(.end)
-        clearGestureState()
     }
 
     private static func horizontalSwipeVelocity(touches: Set<NSTouch>) -> Float? {
