@@ -75,7 +75,10 @@ class SwipeManager {
         } else if touchesCount == 3 {
             // Handle 3-fingers swipe.
         } else {
-            endGesture()
+            if startTime != nil {
+                endGesture()
+            }
+            return
         }
 
         let velX = SwipeManager.horizontalSwipeVelocity(touches: touches)
