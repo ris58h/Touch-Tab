@@ -71,6 +71,7 @@ class SwipeManager {
 
         if touchesCount == 2 {
             // Scroll in App Switcher is OK. Do nothing.
+            clearEventState()
             return
         } else if touchesCount == 3 {
             // Handle 3-fingers swipe.
