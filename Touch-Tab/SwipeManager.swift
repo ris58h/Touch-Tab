@@ -2,12 +2,15 @@ import Cocoa
 
 class SwipeManager {
     private static let accVelXThreshold: Float = 0.07
-    private static let debounceTimeBeforeActivation: Double = 0.07
+    // TODO: figure out the real value of the delay.
+    private static let appSwitcherUIDelay: Double = 0.2
 
     private static var eventTap: CFMachPort? = nil
+    // Event state.
     private static var accVelX: Float = 0
     private static var prevTouchPositions: [String: NSPoint] = [:]
-    private static var debounceStartTime: Date? = nil
+    // Gesture state. Gesture may consists of multiple events.
+    private static var startTime: Date? = nil
 
     //TODO: move it somewhere else?
     private static func listener(_ eventType: EventType) {
@@ -65,21 +68,14 @@ class SwipeManager {
             return
         }
         let touchesCount = touches.allSatisfy({ $0.phase == .ended }) ? 0 : touches.count
-        
-        // We don't care about non-3-fingers swipes.
-        if touchesCount != 3 {
-            // Except when we already started a gesture, so we need to end it.
-            if touchesCount < 2 || touchesCount > 3 {
-                if AppSwitcher.isActive {
-                    endGesture()
-                } else if debounceStartTime != nil {
-                    // We have start event skipped due to debounce, so we need to call it first.
-                    startOrContinueGesture()
-                    endGesture()
-                }
-            }
-            clearState()
+
+        if touchesCount == 2 {
+            // Scroll in App Switcher is OK. Do nothing.
             return
+        } else if touchesCount == 3 {
+            // Handle 3-fingers swipe.
+        } else {
+            endGesture()
         }
 
         let velX = SwipeManager.horizontalSwipeVelocity(touches: touches)
@@ -94,31 +90,39 @@ class SwipeManager {
             return
         }
 
-        // Debounce events before activation to prevent multiple listener calls on one powerful swipe.
-        if debounceStartTime == nil {
-            debounceStartTime = Date()
-        }
-        if -debounceStartTime!.timeIntervalSinceNow < debounceTimeBeforeActivation && !AppSwitcher.isActive {
-            return
-        }
-
         startOrContinueGesture()
-        clearState()
     }
-    
-    private static func clearState() {
+
+    private static func clearEventState() {
         accVelX = 0
         prevTouchPositions.removeAll()
-        debounceStartTime = nil
     }
-    
+
+    private static func clearGestureState() {
+        clearEventState()
+        startTime = nil
+    }
+
     private static func startOrContinueGesture() {
+        if startTime == nil {
+            startTime = Date()
+        } else {
+            let interval = startTime!.timeIntervalSinceNow
+            if -interval < appSwitcherUIDelay {
+                // We skip subsequent events until App Switcher UI is shown.
+                clearEventState()
+                return
+            }
+        }
+
         let direction: EventType.Direction = accVelX < 0 ? .left : .right
         listener(.startOrContinue(direction: direction))
+        clearEventState()
     }
 
     private static func endGesture() {
         listener(.end)
+        clearGestureState()
     }
 
     private static func horizontalSwipeVelocity(touches: Set<NSTouch>) -> Float? {
