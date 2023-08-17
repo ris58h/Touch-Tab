@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         #endif
-        
+
         createStatusBarItem()
         requestAccessibilityPermission() {
             SwipeManager.start()
@@ -28,8 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func requestAccessibilityPermission(completion: @escaping ()->()) {
-        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-        let isAccessibilityPermissionGranted = AXIsProcessTrustedWithOptions(options)
+        let isAccessibilityPermissionGranted = PrivacyHelper.isProcessTrustedWithPrompt()
         debugPrint("Accessibility permission", isAccessibilityPermissionGranted)
         if isAccessibilityPermissionGranted {
             completion()
