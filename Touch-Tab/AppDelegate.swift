@@ -27,6 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        statusBarItem.isVisible=true
+        return true
+    }
+
     private func requestAccessibilityPermission(completion: @escaping ()->()) {
         let isAccessibilityPermissionGranted = PrivacyHelper.isProcessTrustedWithPrompt()
         debugPrint("Accessibility permission", isAccessibilityPermissionGranted)
@@ -49,6 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
         statusBarItem.button?.image = AppDelegate.statusIcon
         statusBarItem.button?.toolTip = BundleInfo.displayName()
+        statusBarItem.behavior = .removalAllowed
 
         statusBarItem.menu = NSMenu()
         statusBarItem.menu?.addItem(
