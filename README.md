@@ -19,7 +19,7 @@ pop-up will appear, click `Open` again.
 - Hold after the swipe or swipe slowly to show App Switcher UI. Pro tip: you can use 2-fingers scroll to switch apps in App Switcher faster.
 
 ### Hide Status Bar Item
-Holding ⌘, drag it away from the status bar until you see ✖️ (cross icon) then let it go. To recover the item, just open Touch-Tab one more time.
+Holding ⌘ drag the item away from the status bar until you see ✖️ (cross icon) then let it go. To recover the item just open the app one more time.
 
 ## Troubleshooting
 ### "Touch-Tab" can’t be opened because Apple cannot check it for malicious software
