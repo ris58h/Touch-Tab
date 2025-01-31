@@ -6,6 +6,8 @@ Switch apps with trackpad on macOS.
 Use 3-fingers swipe right or 3-fingers swipe left to switch between apps.
 Hold after the swipe or swipe slowly to show App Switcher UI.
 
+Want to support? [Buy me a coffee](https://www.buymeacoffee.com/ris58h).
+
 ## Installation
 1. Download the [latest](https://github.com/ris58h/Touch-Tab/releases/latest/download/Touch-Tab.zip) `Touch-Tab.zip` from [Releases](https://github.com/ris58h/Touch-Tab/releases) page.
 2. Unzip the archive and move `Touch-Tab.app` into the `Applications` folder.
