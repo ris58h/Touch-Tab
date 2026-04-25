@@ -7,6 +7,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var statusBarItem: NSStatusItem!
     private var aboutWindow: NSWindow!
+    private var accessibilityPermissionCheckTimer: Timer?
 
     private static func templateImage(named: String) -> NSImage? {
         let image = NSImage(named: named)
@@ -39,11 +40,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             completion()
         } else {
             addAccessibilityWarning()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+            accessibilityPermissionCheckTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
                 if AXIsProcessTrusted() {
                     debugPrint("Accessibility permission granted")
                     removeAccessibilityWarning()
                     timer.invalidate()
+                    accessibilityPermissionCheckTimer = nil
                     completion()
                 }
             }
